@@ -28,6 +28,12 @@
       <version>${protobufVersion}</version>
     </dependency>
     <dependency>
+      <groupId>com.google.openrtb</groupId>
+      <artifactId>openrtb-core</artifactId>
+      <version>${google.openrtb-core.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
       <version>${guavaVersion}</version>
