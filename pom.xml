@@ -60,6 +60,7 @@
     <protobufVersion>3.8.0</protobufVersion>
     <slf4jVersion>1.7.25</slf4jVersion>
     <truthVersion>1.0</truthVersion>
+    <google.openrtb-core.version>1.5.7</google.openrtb-core.version>
 
     <!-- Plugin versions -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
