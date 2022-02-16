@@ -232,7 +232,15 @@ public class OpenRtbNativeJsonTest {
         .addEventtrackers(NativeResponse.EventTracker.newBuilder()
             .setEvent(EventType.VIEWABLE_MRC50.getNumber())
             .setMethod(EventTrackingMethod.IMAGE_PIXEL.getNumber())
-            .setUrl("http://bidder.com/impression"))
+            .setUrl("http://bidder.com/impression")
+            .addCustomdata(NativeResponse.EventTracker.KeyValuePair.newBuilder()
+                .setKey("accountnumber")
+                .setValue("123")
+                .build())
+            .addCustomdata(NativeResponse.EventTracker.KeyValuePair.newBuilder()
+                .setKey("accountnumber")
+                .setValue("321")
+                .build()))
     .setExtension(TestNExt.testNResponse1, test1)
     .setExtension(TestNExt.testNResponse2, test2);
   }

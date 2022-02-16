@@ -634,9 +634,34 @@ public class OpenRtbNativeJsonReader extends AbstractOpenRtbJsonReader {
       case "url":
         tracker.setUrl(par.getText());
         break;
+      case "customdata":
+        for (startArray(par); endArray(par); par.nextToken()) {
+          readRespEventTrackerCustomData(tracker, par);
+        }
+        break;
       default:
         readOther(tracker, par, fieldName);
     }
+  }
+
+  protected void readRespEventTrackerCustomData(
+          NativeResponse.EventTracker.Builder tracker, JsonParser par) throws IOException {
+    for (startObject(par); endObject(par); par.nextToken()) {
+      String fieldName = getCurrentName(par);
+      if (par.nextToken() != JsonToken.VALUE_NULL) {
+        NativeResponse.EventTracker.KeyValuePair.Builder keyValuePair =
+                NativeResponse.EventTracker.KeyValuePair.newBuilder();
+        readRespEventTrackerCustomDataField(par, keyValuePair, fieldName);
+        tracker.addCustomdata(keyValuePair.build());
+      }
+    }
+  }
+
+  protected void readRespEventTrackerCustomDataField(JsonParser par,
+          NativeResponse.EventTracker.KeyValuePair.Builder keyValuePair,
+          String fieldName) throws IOException {
+    keyValuePair.setKey(fieldName)
+                .setValue(par.getText());
   }
 
   protected final OpenRtbJsonReader coreReader() {

@@ -474,13 +474,32 @@ public class OpenRtbNativeJsonWriter extends AbstractOpenRtbJsonWriter {
     gen.writeEndObject();
   }
 
-  protected void writeRespEventTrackerFields(
-      NativeResponse.EventTracker tracker, JsonGenerator gen) throws IOException {
+  protected void writeRespEventTrackerFields(NativeResponse.EventTracker tracker,
+          JsonGenerator gen) throws IOException {
     gen.writeNumberField("event", tracker.getEvent());
     gen.writeNumberField("method", tracker.getMethod());
     if (tracker.hasUrl()) {
       gen.writeStringField("url", tracker.getUrl());
     }
+    if (tracker.getCustomdataCount() > 0) {
+      gen.writeArrayFieldStart("customdata");
+      for (NativeResponse.EventTracker.KeyValuePair keyValuePair : tracker.getCustomdataList()) {
+        writeRespEventTrackerKeyValuePair(keyValuePair, gen);
+      }
+      gen.writeEndArray();
+    }
+  }
+
+  protected void writeRespEventTrackerKeyValuePair(NativeResponse.EventTracker.KeyValuePair keyValuePair,
+          JsonGenerator gen) throws IOException {
+    gen.writeStartObject();
+    writeRespEventTrackerKeyValuePairFields(keyValuePair, gen);
+    gen.writeEndObject();
+  }
+
+  private void writeRespEventTrackerKeyValuePairFields(NativeResponse.EventTracker.KeyValuePair keyValuePair,
+          JsonGenerator gen) throws IOException {
+    gen.writeStringField(keyValuePair.getKey(), keyValuePair.getValue());
   }
 
   protected final OpenRtbJsonWriter coreWriter() {
