@@ -176,6 +176,30 @@ message BidRequest {
     extensions 100 to 9999;
   }
 
+
+  // OpenRTB 2.2: This object contains any legal, governmental, or industry
+  // regulations that apply to the request. The coppa flag signals whether
+  // or not the request falls under the United States Federal Trade Commission's
+  // regulations for the United States Children's Online Privacy Protection Act
+  // ("COPPA"). Refer to Section 7.1 for more information.
+  message Regs {
+    // Flag indicating if this request is subject to the COPPA regulations
+    // established by the USA FTC, where 0 = no, 1 = yes.
+    optional int32 coppa = 1;
+
+    // OpenRTB 2.6:
+    // Callers should fill this field solely based on whether the impression
+    // will serve to an EEA user, based on information available to them. It
+    // does not constitute legal guidance on GDPR.
+    optional int32 gdpr = 2;
+
+    // OpenRTB Extension for US Privacy (CCPA)
+    optional string us_privacy = 3;
+
+    // Extensions.
+    extensions 100 to 9999;
+  }
+
   // OpenRTB 2.0: This object describes an ad placement or impression
   // being auctioned.  A single bid request can include multiple Imp objects,
   // a use case for which might be an exchange that supports selling all
@@ -450,7 +474,7 @@ message BidRequest {
 
       // Minimum video ad duration in seconds.
       // RECOMMENDED by the OpenRTB specification.
-      optional int32 minduration = 3;
+      optional int32 minduration = 3 [default = 0];
 
       // Maximum video ad duration in seconds.
       // RECOMMENDED by the OpenRTB specification.
@@ -488,11 +512,11 @@ message BidRequest {
 
       // Videos of total duration greater than this number of seconds
       // can be skippable; only applicable if the ad is skippable.
-      optional int32 skipmin = 24;
+      optional int32 skipmin = 24 [default = 0];
 
       // Number of seconds a video must play before skipping is
       // enabled; only applicable if the ad is skippable.
-      optional int32 skipafter = 25;
+      optional int32 skipafter = 25 [default = 0];
 
       // DEPRECATED at openrtb 2.6: If multiple ad impressions are offered in the same bid request,
       // the sequence number will allow for the coordinated delivery of
@@ -600,7 +624,7 @@ message BidRequest {
       // Minimum CPM per second. This is a price floor for the
       // “dynamic” portion of a video ad pod, relative to the duration
       // of bids an advertiser may submit.
-      optional float mincpmpersec = 34;
+      optional double mincpmpersec = 34;
 
       // Extensions.
       extensions 100 to 9999;
@@ -632,7 +656,7 @@ message BidRequest {
 
       // Minimum audio ad duration in seconds.
       // RECOMMENDED by the OpenRTB specification.
-      optional int32 minduration = 2;
+      optional int32 minduration = 2 [default = 0];
 
       // Maximum audio ad duration in seconds.
       // RECOMMENDED by the OpenRTB specification.
@@ -739,7 +763,7 @@ message BidRequest {
       // Minimum CPM per second. This is a price floor for the
       // “dynamic” portion of a video ad pod, relative to the duration
       // of bids an advertiser may submit.
-      optional float mincpmpersec = 34;
+      optional double mincpmpersec = 34;
 
       // Extensions.
       extensions 100 to 9999;
@@ -912,7 +936,7 @@ message BidRequest {
     // The taxonomy in use. Refer to the AdCOM list List: Category
     // Taxonomies for values. If no cattax field is supplied IAB Content
     // Category Taxonomy 1.0 is assumed.
-    optional int32 cattax = 16;
+    optional int32 cattax = 16; // Note: not defaulted unlike others
 
     // Array of keywords about the site. Only one of ‘keywords’ or
     // ‘kwarray’ may be present.
@@ -1583,23 +1607,6 @@ message BidRequest {
   }
 
   // OpenRTB 2.6
-  // This object contains a single user identifier provided as part of extended identifiers. The exchange should
-  // ensure that business agreements allow for the sending of this data.
-  message UID {
-    // Cookie or platform-native identifier.
-    optional string id = 1;
-
-    // Type of user agent the match is from.  It is highly recommended to set
-    // this, as many DSPs separate app-native IDs from browser-based IDs and
-    // require a type value for ID resolution.
-    // Refer to enum com.iabtechlab.adcom.v1.enums.AgentType for generic values.
-    optional int32 atype = 2;
-
-    // Extensions.
-    extensions 100 to 9999;
-  }
-
-  // OpenRTB 2.6
   // Extended identifiers support in the OpenRTB specification allows buyers to
   // use audience data in real-time bidding.  The exchange should ensure that
   // business agreements allow for the sending of this data.  Note, it is
@@ -1612,6 +1619,23 @@ message BidRequest {
 
     // Array of extended ID UID objects from the given source.
     repeated UID uids = 2;
+
+    // Extensions.
+    extensions 100 to 9999;
+  }
+
+  // OpenRTB 2.6
+  // This object contains a single user identifier provided as part of extended identifiers. The exchange should
+  // ensure that business agreements allow for the sending of this data.
+  message UID {
+    // Cookie or platform-native identifier.
+    optional string id = 1;
+
+    // Type of user agent the match is from.  It is highly recommended to set
+    // this, as many DSPs separate app-native IDs from browser-based IDs and
+    // require a type value for ID resolution.
+    // Refer to enum com.iabtechlab.adcom.v1.enums.AgentType for generic values.
+    optional int32 atype = 2;
 
     // Extensions.
     extensions 100 to 9999;
@@ -1669,29 +1693,6 @@ message BidRequest {
 
     // A sequence of version components, in descending hierarchical order (major, minor, micro, …)
     repeated string version = 2;
-
-    // Extensions.
-    extensions 100 to 9999;
-  }
-
-  // OpenRTB 2.2: This object contains any legal, governmental, or industry
-  // regulations that apply to the request. The coppa flag signals whether
-  // or not the request falls under the United States Federal Trade Commission's
-  // regulations for the United States Children's Online Privacy Protection Act
-  // ("COPPA"). Refer to Section 7.1 for more information.
-  message Regs {
-    // Flag indicating if this request is subject to the COPPA regulations
-    // established by the USA FTC, where 0 = no, 1 = yes.
-    optional int32 coppa = 1;
-
-    // OpenRTB 2.6:
-    // Callers should fill this field solely based on whether the impression
-    // will serve to an EEA user, based on information available to them. It
-    // does not constitute legal guidance on GDPR.
-    optional int32 gdpr = 2;
-
-    // OpenRTB Extension for US Privacy (CCPA)
-    optional string us_privacy = 3;
 
     // Extensions.
     extensions 100 to 9999;
@@ -1891,7 +1892,7 @@ message BidResponse {
       // The taxonomy in use. Refer to the AdCOM list List: Category
       // Taxonomies for values. If no cattax field is supplied IAB Content
       // Category Taxonomy 1.0 is assumed.
-      optional int32 cattax = 28;
+      optional int32 cattax = 28 [default = 1];
 
       // List of supported APIs for the markup. If an API is not explicitly
       // listed, it is assumed to be unsupported. Refer to List: API
