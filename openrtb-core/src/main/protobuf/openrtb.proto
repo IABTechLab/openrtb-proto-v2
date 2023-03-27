@@ -87,7 +87,7 @@ message BidRequest {
   // web page, all video spots such as pre/mid/post roll) to support
   // road-blocking. 0 = no or unknown, 1 = yes, the impressions offered
   // represent all that are available.
-  optional int32 allimps = 10 [default = 0];
+  optional bool allimps = 10 [default = 0];
 
   // Array of allowed currencies for bids on this bid request using ISO-4217
   // alpha codes. Recommended only if the exchange accepts multiple currencies.
@@ -107,7 +107,7 @@ message BidRequest {
 
   // Indicator of test mode in which auctions are not billable,
   // where 0 = live mode, 1 = test mode.
-  optional int32 test = 15 [default = 0];
+  optional bool test = 15 [default = 0];
 
   // Block list of buyer seats (e.g., advertisers, agencies) restricted
   // from bidding on this impression. IDs of seats and knowledge
@@ -155,7 +155,7 @@ message BidRequest {
     // Entity responsible for the final impression sale decision,
     // where 0 = exchange, 1 = upstream source
     // RECOMMENDED by the OpenRTB specification.
-    optional int32 fd = 1;
+    optional bool fd = 1;
 
     // Transaction ID that must be common across all participants in
     // this bid request (e.g., potentially multiple exchanges).
@@ -240,7 +240,7 @@ message BidRequest {
     optional string displaymanagerver = 5;
 
     // 1 = the ad is interstitial or full screen, 0 = not interstitial.
-    optional int32 instl = 6 [default = 0];
+    optional bool instl = 6 [default = 0];
 
     // Identifier for specific ad placement or ad tag that was used to
     // initiate the auction. This can be useful for debugging of any issues,
@@ -263,7 +263,7 @@ message BidRequest {
     // Flag to indicate if the impression requires secure HTTPS URL creative
     // assets and markup, where 0 = non-secure, 1 = secure.  If omitted,
     // the secure state is unknown, but non-secure HTTP support can be assumed.
-    optional int32 secure = 12;
+    optional bool secure = 12;
 
     // Array of exchange-specific names of supported iframe busters.
     repeated string iframebuster = 10;
@@ -400,7 +400,7 @@ message BidRequest {
 
       // Specify if the banner is delivered in the top frame (true)
       // or in an iframe (false).
-      optional int32 topframe = 8;
+      optional bool topframe = 8;
 
       // Directions in which the banner may expand.
       // Refer to enum com.iabtechlab.adcom.v1.enums.ExpandableDirection for generic values.
@@ -415,7 +415,7 @@ message BidRequest {
       // (Section 3.2.7) in an array of companion ads. Indicates the
       // companion banner rendering mode relative to the associated
       // video, where 0 = concurrent, 1 = end-card.
-      optional int32 vcm = 16;
+      optional bool vcm = 16;
 
       // Extensions.
       extensions 100 to 9999;
@@ -508,7 +508,7 @@ message BidRequest {
       // If a bidder sends markup/creative that is itself skippable, the
       // Bid object should include the attr array with an element of
       // 16 indicating skippable video.
-      optional int32 skip = 23;
+      optional bool skip = 23;
 
       // Videos of total duration greater than this number of seconds
       // can be skippable; only applicable if the ad is skippable.
@@ -542,7 +542,7 @@ message BidRequest {
 
       // Indicates if letter-boxing of 4:3 content into a 16:9 window is
       // allowed, where 0 = no, 1 = yes.
-      optional int32 boxingallowed = 14 [default = 1];
+      optional bool boxingallowed = 14 [default = 1];
 
       // Playback methods that may be in use. If none are specified, any
       // method may be used. Only one method is typically used in practice.
@@ -722,7 +722,7 @@ message BidRequest {
 
       // Indicates if the ad is stitched with audio content or delivered
       // independently, where 0 = no, 1 = yes.
-      optional int32 stitched = 23;
+      optional bool stitched = 23;
 
       // Volume normalization mode.
       // Refer to enum com.iabtechlab.adcom.v1.VolumeNormalizationMode for generic values.
@@ -827,7 +827,7 @@ message BidRequest {
       // Indicator of auction eligibility to seats named in the Direct Deals
       // object, where 0 = all bids are accepted, 1 = bids are restricted to
       // the deals specified and the terms thereof.
-      optional int32 private_auction = 1 [default = 0];
+      optional bool private_auction = 1 [default = 0];
 
       // Array of Deal (Section 3.2.18) objects that convey the specific deals
       // applicable to this impression.
@@ -907,7 +907,7 @@ message BidRequest {
     optional string page = 7;
 
     // Indicates if the site has a privacy policy, where 0 = no, 1 = yes.
-    optional int32 privacypolicy = 8;
+    optional bool privacypolicy = 8;
 
     // Referrer URL that caused navigation to the current page.
     optional string ref = 9;
@@ -930,7 +930,7 @@ message BidRequest {
 
     // Indicates if the site has been programmed to optimize layout
     // when viewed on mobile devices, where 0 = no, 1 = yes.
-    optional int32 mobile = 15;
+    optional bool mobile = 15;
 
     // OpenRTB 2.6
     // The taxonomy in use. Refer to the AdCOM list List: Category
@@ -986,10 +986,10 @@ message BidRequest {
     optional string bundle = 8;
 
     // Indicates if the app has a privacy policy, where 0 = no, 1 = yes.
-    optional int32 privacypolicy = 9;
+    optional bool privacypolicy = 9;
 
     // 0 = app is free, 1 = the app is a paid version.
-    optional int32 paid = 10;
+    optional bool paid = 10;
 
     // Details about the Publisher (Section 3.2.8) of the app.
     optional Publisher publisher = 11;
@@ -1120,10 +1120,10 @@ message BidRequest {
     optional string context_22 = 12;
 
     // 0 = not live, 1 = content is live (e.g., stream, live blog).
-    optional int32 livestream = 13;
+    optional bool livestream = 13;
 
     // 0 = indirect, 1 = direct.
-    optional int32 sourcerelationship = 14;
+    optional bool sourcerelationship = 14;
 
     // Details about the content Producer (Section 3.2.10).
     optional Producer producer = 15;
@@ -1137,7 +1137,7 @@ message BidRequest {
 
     // Indicator of whether or not the content is embeddable (e.g., an
     // embeddable video player), where 0 = no, 1 = yes.
-    optional int32 embeddable = 18;
+    optional bool embeddable = 18;
 
     // Content language using ISO-639-1-alpha-2.
     optional string language = 19;
@@ -1202,7 +1202,7 @@ message BidRequest {
     // Standard "Do Not Track" flag as set in the header by the browser,
     // where 0 = tracking is unrestricted, 1 = do not track.
     // RECOMMENDED by the OpenRTB specification.
-    optional int32 dnt = 1;
+    optional bool dnt = 1;
 
     // Browser user agent string. Certain data may be redacted or replaced.
     // RECOMMENDED by the OpenRTB specification.
@@ -1267,11 +1267,11 @@ message BidRequest {
     optional double pxratio = 28;
 
     // Support for JavaScript, where 0 = no, 1 = yes.
-    optional int32 js = 16;
+    optional bool js = 16;
 
     // Indicates if the geolocation API will be available to JavaScript
     // code running in the banner, where 0 = no, 1 = yes.
-    optional int32 geofetch = 29;
+    optional bool geofetch = 29;
 
     // Network connection type.
     // Refer to enum com.iabtechlab.adcom.v1.enums.ConnectionType for generic values.
@@ -1297,7 +1297,7 @@ message BidRequest {
     // where 0 = tracking is unrestricted, 1 = tracking must be limited per
     // commercial guidelines.
     // RECOMMENDED by the OpenRTB specification.
-    optional int32 lmt = 23;
+    optional bool lmt = 23;
 
     // Mobile carrier as the concatenated MCC-MNC code (e.g.,
     // "310-005" identifies Verizon Wireless CDMA in the USA).
@@ -1755,7 +1755,7 @@ message BidResponse {
 
     // 0 = impressions can be won individually; 1 = impressions must be won or
     // lost as a group.
-    optional int32 group = 3 [default = 0];
+    optional bool group = 3 [default = 0];
 
     // Extensions.
     extensions 100 to 9999;
