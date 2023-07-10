@@ -621,6 +621,7 @@ public class OpenRtbJsonTest {
                 .setPodid("pod_1")
                 .setPodseq(1)
                 .addRqddurs(15)
+                .setSlotinpod(2)
                 .setMincpmpersec(60)
                 .setExtension(TestExt.testVideo, test1)))
         .addImp(Imp.newBuilder()
