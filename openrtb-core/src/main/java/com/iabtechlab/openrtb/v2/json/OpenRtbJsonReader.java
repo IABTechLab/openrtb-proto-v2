@@ -344,6 +344,12 @@ public class OpenRtbJsonReader extends AbstractOpenRtbJsonReader {
           imp.addMetric(readMetric(par));
         }
         break;
+      case "rwwd":
+        imp.setRwwd(par.getValueAsBoolean());
+        break;
+      case "ssai":
+        imp.setSsai(par.getIntValue());
+        break;
       default:
         readOther(imp, par, fieldName);
     }
@@ -600,6 +606,29 @@ public class OpenRtbJsonReader extends AbstractOpenRtbJsonReader {
       case "playbackend":
         video.setPlaybackend(par.getIntValue());
         break;
+      case "maxseq":
+        video.setMaxseq(par.getIntValue());
+        break;
+      case "poddur":
+        video.setPoddur(par.getIntValue());
+        break;
+      case "podid":
+        video.setPodid(par.getText());
+        break;
+      case "podseq":
+        video.setPodseq(par.getIntValue());
+        break;
+      case "rqddurs":
+        for (startArray(par); endArray(par); par.nextToken()) {
+          video.addRqddurs(par.getIntValue());
+        }
+        break;
+      case "slotinpod":
+        video.setSlotinpod(par.getIntValue());
+        break;
+      case "mincpmpersec":
+        video.setMincpmpersec(par.getValueAsDouble());
+        break;
       default:
         readOther(video, par, fieldName);
     }
@@ -719,7 +748,26 @@ public class OpenRtbJsonReader extends AbstractOpenRtbJsonReader {
       case "nvol":
         audio.setNvol(par.getIntValue());
         break;
-
+      case "poddur":
+        audio.setPoddur(par.getIntValue());
+        break;
+      case "rqddurs":
+        for (startArray(par); endArray(par); par.nextToken()) {
+          audio.addRqddurs(par.getIntValue());
+        }
+        break;
+      case "podid":
+        audio.setPodid(par.getText());
+        break;
+      case "podseq":
+        audio.setPodseq(par.getIntValue());
+        break;
+      case "slotinpod":
+        audio.setSlotinpod(par.getIntValue());
+        break;
+      case "mincpmpersec":
+        audio.setMincpmpersec(par.getValueAsDouble());
+        break;
       default:
         readOther(audio, par, fieldName);
     }
@@ -1737,6 +1785,20 @@ public class OpenRtbJsonReader extends AbstractOpenRtbJsonReader {
         break;
       case "hratio":
         bid.setHratio(par.getIntValue());
+        break;
+      case "apis":
+        for (startArray(par); endArray(par); par.nextToken()) {
+          bid.addApis(par.getIntValue());
+        }
+        break;
+      case "dur":
+        bid.setDur(par.getIntValue());
+        break;
+      case "mtype":
+        bid.setMtype(par.getIntValue());
+        break;
+      case "slotinpod":
+        bid.setSlotinpod(par.getIntValue());
         break;
       default:
         readOther(bid, par, fieldName);

@@ -235,6 +235,12 @@ public class OpenRtbJsonWriter extends AbstractOpenRtbJsonWriter {
       }
       gen.writeEndArray();
     }
+    if (imp.hasRwwd()) {
+      writeIntBoolField("rwwd", imp.getRwwd(), gen);
+    }
+    if (imp.hasSsai()) {
+      gen.writeNumberField("ssai", imp.getSsai());
+    }
   }
 
   public final void writeMetric(Metric metric, JsonGenerator gen) throws IOException {
@@ -421,6 +427,25 @@ public class OpenRtbJsonWriter extends AbstractOpenRtbJsonWriter {
     if (video.hasPlaybackend()) {
       gen.writeNumberField("playbackend", video.getPlaybackend());
     }
+    if (video.hasMaxseq()) {
+      gen.writeNumberField("maxseq", video.getMaxseq());
+    }
+    if (video.hasPoddur()) {
+      gen.writeNumberField("poddur", video.getPoddur());
+    }
+    if (video.hasPodid()) {
+      gen.writeStringField("podid", video.getPodid());
+    }
+    if (video.hasPodseq()) {
+      gen.writeNumberField("podseq", video.getPodseq());
+    }
+    writeInts("rqddurs", video.getRqddursList(), gen);
+    if (video.hasSlotinpod()) {
+      gen.writeNumberField("slotinpod", video.getSlotinpod());
+    }
+    if (video.hasMincpmpersec()) {
+      gen.writeNumberField("mincpmpersec", video.getMincpmpersec());
+    }
   }
 
   public final void writeCompanionAd21(CompanionAd companionad21, JsonGenerator gen)
@@ -505,6 +530,22 @@ public class OpenRtbJsonWriter extends AbstractOpenRtbJsonWriter {
     }
     if (audio.hasNvol()) {
       gen.writeNumberField("nvol", audio.getNvol());
+    }
+    if (audio.hasPoddur()) {
+      gen.writeNumberField("poddur", audio.getPoddur());
+    }
+    writeInts("rqddurs", audio.getRqddursList(), gen);
+    if (audio.hasPodid()) {
+      gen.writeStringField("podid", audio.getPodid());
+    }
+    if (audio.hasPodseq()) {
+      gen.writeNumberField("podseq", audio.getPodseq());
+    }
+    if (audio.hasSlotinpod()) {
+      gen.writeNumberField("slotinpod", audio.getSlotinpod());
+    }
+    if (audio.hasMincpmpersec()) {
+      gen.writeNumberField("mincpmpersec", audio.getMincpmpersec());
     }
   }
 
@@ -1308,6 +1349,16 @@ public class OpenRtbJsonWriter extends AbstractOpenRtbJsonWriter {
     }
     if (bid.hasHratio()) {
       gen.writeNumberField("hratio", bid.getHratio());
+    }
+    writeInts("apis", bid.getApisList(), gen);
+    if (bid.hasDur()) {
+      gen.writeNumberField("dur", bid.getDur());
+    }
+    if (bid.hasMtype()) {
+      gen.writeNumberField("mtype", bid.getMtype());
+    }
+    if (bid.hasSlotinpod()) {
+      gen.writeNumberField("slotinpod", bid.getSlotinpod());
     }
   }
 
