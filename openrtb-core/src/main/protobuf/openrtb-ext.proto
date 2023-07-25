@@ -60,11 +60,35 @@ extend com.iabtechlab.openrtb.v2.BidRequest.User {
   optional UserExt user = 202;
 }
 
+// This object represents both the links in the supply chain as well as an
+// indicator whether or not the supply chain is complete.
+message SupplyChain {
+  // Flag indicating whether the chain contains all nodes involved in the
+  // transaction leading back to the owner of the site, app or other medium of
+  // the inventory, where 0 = no, 1 = yes.
+  optional bool complete = 1;
+
+  // Version of the supply chain specification in use, in the format of
+  // “major.minor”. For example, for version 1.0 of the spec, use the string
+  // “1.0”.
+  optional string ver = 2;
+
+  // Array of SupplyChainNode objects in the order of the chain. In a complete
+  // supply chain, the first node represents the initial advertising system and
+  // seller ID involved in the transaction, i.e. the owner of the site, app, or
+  // other medium. In an incomplete supply chain, it represents the first known
+  // node. The last node represents the entity sending this bid request.
+  repeated com.iabtechlab.openrtb.v2.BidRequest.Source.SupplyChain SupplyChainNode nodes = 3;
+
+  // Extensions.
+  extensions 100 to 9999;
+}
+
 // Ad Exchange extensions for the Source object.
 message SourceExt {
   // The SupplyChain object enables buyers to see all parties who are selling or
   // reselling a given bid request.
-  optional com.iabtechlab.openrtb.v2.BidRequest.Source.SupplyChain schain = 1 [deprecated = true];
+  optional SupplyChain schain = 1 [deprecated = true];
 
   // Identifier of the OM SDK integration. This is the same as the "name"
   // parameter of the OMID Partner object.

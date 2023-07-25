@@ -180,7 +180,7 @@ message BidRequest {
       // Version of the supply chain specification in use, in the format of
       // “major.minor”. For example, for version 1.0 of the spec, use the string
       // “1.0”.
-      optional string ver = 2;
+      optional string ver = 3;
 
       // This object is associated with a SupplyChain object as an array of
       // nodes. These nodes define the identity of an entity participating in
@@ -239,7 +239,7 @@ message BidRequest {
       // owner of the site, app, or other medium. In an incomplete supply chain,
       // it represents the first known node. The last node represents the entity
       // sending this bid request.
-      repeated SupplyChainNode nodes = 3;
+      repeated SupplyChainNode nodes = 2;
 
       // Extensions.
       extensions 100 to 9999;
