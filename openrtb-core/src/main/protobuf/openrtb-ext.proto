@@ -78,7 +78,7 @@ message SupplyChain {
   // seller ID involved in the transaction, i.e. the owner of the site, app, or
   // other medium. In an incomplete supply chain, it represents the first known
   // node. The last node represents the entity sending this bid request.
-  repeated com.iabtechlab.openrtb.v2.BidRequest.Source.SupplyChain SupplyChainNode nodes = 3;
+  repeated com.iabtechlab.openrtb.v2.BidRequest.Source.SupplyChain.SupplyChainNode nodes = 3;
 
   // Extensions.
   extensions 100 to 9999;
