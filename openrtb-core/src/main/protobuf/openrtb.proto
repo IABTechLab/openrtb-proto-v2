@@ -1609,6 +1609,10 @@ message BidRequest {
 
     // When GDPR regulations are in effect this attribute contains the
     // Transparency and Consent Framework’s Consent String data structure.
+    optional string deprecated_consent = 9 [deprecated = true];
+
+    // When GDPR regulations are in effect this attribute contains the
+    // Transparency and Consent Framework’s Consent String data structure.
     optional string consent = 10;
 
     // Extensions.
