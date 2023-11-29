@@ -1611,8 +1611,40 @@ message BidRequest {
     // Transparency and Consent Framework’s Consent String data structure.
     optional string consent = 10;
 
+    // Data made available by the publisher, such as publisher-provided
+    // identifiers.
+    repeated EID eids = 11;
+
     // Extensions.
     extensions 100 to 9999;
+
+    // OpenRTB 2.6: Extended data, such as a publisher-provided identifier, that allows
+    // buyers to use data made available by the publisher in real-time bidding.
+    // This object can contain one or more UIDs from a single source or a
+    // technology provider.
+    message EID {
+      // Source or technology provider responsible for the set of included data.
+      optional string source = 1;
+
+      // Array of extended ID UID objects from the given source.
+      repeated UID uids = 2;
+
+      // Extensions.
+      extensions 100 to 9999;
+
+      // OpenRTB 2.6: This object contains a single data item, such as a publisher-provided
+      // identifier, provided as part of extended identifiers.
+      message UID {
+        // The data value, such as a publisher-provided identifier.
+        optional string id = 1;
+
+        // Type of user agent the ID is from.
+        optional int32 atype = 2;
+
+        // Extensions.
+        extensions 100 to 9999;
+      }
+    }
   }
 
   // OpenRTB 2.0: The data and segment objects together allow additional data
