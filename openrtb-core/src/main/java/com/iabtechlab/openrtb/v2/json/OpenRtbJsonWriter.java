@@ -1303,6 +1303,15 @@ public class OpenRtbJsonWriter extends AbstractOpenRtbJsonWriter {
       }
       gen.writeEndArray();
     }
+    if (eid.hasInserter()) {
+      gen.writeStringField("inserter", eid.getInserter());
+    }
+    if (eid.hasMatcher()) {
+      gen.writeStringField("matcher", eid.getMatcher());
+    }
+    if (eid.hasMm()) {
+      gen.writeNumberField("mm", eid.getMm());
+    }
   }
 
   public final void writeUid(UID uid, JsonGenerator gen) throws IOException {
