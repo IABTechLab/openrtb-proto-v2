@@ -822,7 +822,7 @@ public class OpenRtbJsonTest {
                     .setExtension(TestExt.testUID, test1))
                 .setInserter("inserter")
                 .setMatcher("matcher")
-                .setMm(MatchMethod.NO_MATCH.getNumber())
+                .setMm(1)
                 .setExtension(TestExt.testEID, test1))
             .setExtension(TestExt.testUser, test1))
         .setAt(AuctionType.SECOND_PRICE_PLUS.getNumber())
