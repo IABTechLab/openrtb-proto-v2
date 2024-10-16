@@ -32,6 +32,7 @@ import com.iabtechlab.adcom.v1.enums.Enums.Creative.Attribute;
 import com.iabtechlab.adcom.v1.enums.Enums.Creative.AudioVideoType;
 import com.iabtechlab.adcom.v1.enums.Enums.DeliveryMethod;
 import com.iabtechlab.adcom.v1.enums.Enums.DeviceType;
+import com.iabtechlab.adcom.v1.enums.Enums.MatchMethod;
 import com.iabtechlab.adcom.v1.enums.Enums.ExpandableDirection;
 import com.iabtechlab.adcom.v1.enums.Enums.FeedType;
 import com.iabtechlab.adcom.v1.enums.Enums.LinearityMode;
@@ -667,7 +668,7 @@ public class OpenRtbJsonTest {
                     .setW(110)
                     .setH(60))
                     .setExtension(TestExt.testCompanionAd, test1))
-                .addApi(APIFramework.VAPID_2_0.getNumber())
+                .addApi(APIFramework.VPAID_2_0.getNumber())
                 .addCompaniontype(CompanionType.HTML_RSRC.getNumber())
                 .setSkip(true)
                 .setSkipmin(45)
@@ -702,7 +703,7 @@ public class OpenRtbJsonTest {
                     .setId("compad1")
                     .setW(100)
                     .setH(50))
-                .addApi(APIFramework.VAPID_2_0.getNumber())
+                .addApi(APIFramework.VPAID_2_0.getNumber())
                 .addCompaniontype(CompanionType.HTML_RSRC.getNumber())
                 .setMaxseq(4)
                 .setFeed(FeedType.PODCAST.getNumber())
@@ -822,7 +823,7 @@ public class OpenRtbJsonTest {
                     .setExtension(TestExt.testUID, test1))
                 .setInserter("inserter")
                 .setMatcher("matcher")
-                .setMm(1)
+                .setMm(MatchMethod.NO_MATCH.getNumber())
                 .setExtension(TestExt.testEID, test1))
             .setExtension(TestExt.testUser, test1))
         .setAt(AuctionType.SECOND_PRICE_PLUS.getNumber())

@@ -269,7 +269,7 @@ class OpenRtbJsonRequestHelper {
                 .setId("compad1")
                 .setW(100)
                 .setH(50))
-            .addApi(APIFramework.VAPID_2_0.getNumber())
+            .addApi(APIFramework.VPAID_2_0.getNumber())
             .addCompaniontype(CompanionType.HTML_RSRC.getNumber())
             // Video specific
             .setLinearity(LinearityMode.LINEAR.getNumber())
