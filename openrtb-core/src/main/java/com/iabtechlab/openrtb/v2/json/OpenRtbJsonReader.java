@@ -1843,6 +1843,15 @@ public class OpenRtbJsonReader extends AbstractOpenRtbJsonReader {
           eid.addUids(readUid(par));
         }
         break;
+      case "inserter":
+        eid.setInserter(par.getText());
+        break;
+      case "matcher":
+        eid.setMatcher(par.getText());
+        break;
+      case "mm":
+        eid.setMm(par.getIntValue());
+        break;
       default:
         readOther(eid, par, fieldName);
     }
