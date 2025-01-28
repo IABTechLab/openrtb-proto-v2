@@ -347,6 +347,11 @@ message SKAdNetworkResponse {
   // Supports multiple fidelity types introduced in SKAdNetwork v2.2.
   repeated SKAdNetworkFidelity fidelities = 9;
 
+  // A four-digit integer that ad networks define to represent the ad campaign.
+  // Used in SKAdNetwork 4.0+, replaces Campaign ID `campaign`. DSPs must
+  // generate signatures in 4.0+ using the Source Identifier.
+  optional string sourceidentifier = 10;
+
   // Extensions.
   extensions 100 to 9999;
 }
