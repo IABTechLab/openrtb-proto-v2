@@ -220,10 +220,10 @@ message SKAdNetworkRequest {
   repeated string versions = 5;
 
   // Custom Product Page support.
-  optional int32 productpage = 6;
+  optional bool productpage = 6;
 
   // SKOverlay support. If set, SKOverlay is supported.
-  optional int32 skoverlay = 7;
+  optional bool skoverlay = 7;
 
   // Extensions.
   extensions 100 to 9999;
@@ -316,7 +316,7 @@ message SKAdNetworkSKOverlay {
   optional int32 endcarddelay = 2;
 
   // Whether the overlay can be dismissed by the user, where 0 = no, 1 = yes
-  optional int32 dismissible = 3;
+  optional bool dismissible = 3;
 
   // Position of the Overlay. 0 = bottom, 1 = bottomRaised.
   optional int32 pos = 4;
