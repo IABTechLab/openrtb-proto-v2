@@ -219,6 +219,12 @@ message SKAdNetworkRequest {
   // "2.0" or higher. Dependent on both the OS version and the SDK version.
   repeated string versions = 5;
 
+  // Custom Product Page support.
+  optional bool productpage = 6;
+
+  // SKOverlay support. If set, SKOverlay is supported.
+  optional bool skoverlay = 7;
+
   // Extensions.
   extensions 100 to 9999;
 }
@@ -346,6 +352,38 @@ message SKAdNetworkResponse {
 
   // Supports multiple fidelity types introduced in SKAdNetwork v2.2.
   repeated SKAdNetworkFidelity fidelities = 9;
+
+  // A four-digit integer that ad networks define to represent the ad campaign.
+  // Used in SKAdNetwork 4.0+, replaces Campaign ID `campaign`.
+  // DSPs must generate signatures in 4.0+ using the Source Identifier.
+  optional string sourceidentifier = 10;
+
+  // Custom Product Page ID (UUID).
+  optional string productpageid = 11;
+
+  message SKOverlay {
+    // Delay before presenting the SKOverlay in seconds.
+    // If set to 0, the overlay will be shown immediately.
+    // If this field is not set, the overlay will not be shown.
+    optional int32 delay = 1;
+
+    // Delay before presenting the SKOverlay on an endcard in seconds.
+    // If set to 0, the overlay will be shown immediately.
+    // If this field is not set, the overlay will not be shown.
+    optional int32 endcarddelay = 2;
+
+    // Whether the overlay can be dismissed by the user, where 0 = no, 1 = yes
+    optional bool dismissible = 3;
+
+    // Position of the Overlay. 0 = bottom, 1 = bottomRaised.
+    optional int32 pos = 4;
+
+    // Extensions.
+    extensions 100 to 9999;
+  }
+
+  // SKOverlay support.
+  optional SKOverlay skoverlay = 12;
 
   // Extensions.
   extensions 100 to 9999;
