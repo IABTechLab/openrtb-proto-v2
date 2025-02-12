@@ -707,7 +707,12 @@ message BidRequest {
       // Indicates pod deduplication settings that will be applied to bid
       // responses.
       // PROVISIONAL in the OpenRTB specification.
-      repeated int32 poddedupe = 36 [packed = true];
+      repeated int32 poddedupe = 37 [packed = true];
+
+      // An array of DurFloors objects (Section 3.2.35) indicating the floor
+      // prices for video creatives of various durations that the buyer may bid
+      // with.
+      repeated DurFloors durfloors = 36;
 
       // Extensions.
       extensions 100 to 9999;
@@ -846,7 +851,7 @@ message BidRequest {
       // Refer to enum com.iabtechlab.adcom.v1.VolumeNormalizationMode for generic values.
       optional int32 nvol = 24;
 
-      // An array of `DurFloors` objects (Section 3.2.35) indicating the floor
+      // An array of DurFloors objects (Section 3.2.35) indicating the floor
       // prices for audio creatives of various durations that the buyer may bid
       // with.
       repeated DurFloors durfloors = 31;
@@ -1010,7 +1015,7 @@ message BidRequest {
         // bid on this deal. Omission implies no advertiser restrictions.
         repeated string wadomain = 5;
 
-	// Indicates that the deal is of type `guaranteed` and the bidder must
+	// Indicates that the deal is of type "guaranteed" and the bidder must
 	// bid on the deal, where 0 = not a guaranteed deal, 1 = guaranteed
 	// deal.
         optional int32 guar = 7 [default = 0];
