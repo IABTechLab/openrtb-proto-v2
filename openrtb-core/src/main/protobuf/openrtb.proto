@@ -1097,7 +1097,7 @@ message BidRequest {
     optional string keywords = 13;
 
     // Array of keywords about the site.
-    repeated string kwarray = 17;
+    repeated string kwarray = 18;
 
     // A domain to be used for inventory authorization in the case of inventory
     // sharing arrangements between a site owner and content owner. This field
@@ -1108,7 +1108,7 @@ message BidRequest {
     // Authorization for supply from the inventorypartnerdomain will be
     // published in the ads.txt file on the root of that domain. Refer to the
     // ads.txt 1.1 spec for more details.
-    optional string inventorypartnerdomain = 18;
+    optional string inventorypartnerdomain = 17;
 
     // Extensions.
     extensions 100 to 9999;
@@ -1180,7 +1180,7 @@ message BidRequest {
     optional string keywords = 13;
 
     // Array of keywords about the app.
-    repeated string kwarray = 18;
+    repeated string kwarray = 19;
 
     // A domain to be used for inventory authorization in the case of inventory
     // sharing arrangements between an app owner and content owner. This field
@@ -1191,7 +1191,7 @@ message BidRequest {
     // Authorization for supply from the inventorypartnerdomain will be
     // published in the ads.txt file on the root of that domain. Refer to the
     // ads.txt 1.1 spec for more details.
-    optional string inventorypartnerdomain = 19;
+    optional string inventorypartnerdomain = 18;
 
     // Extensions.
     extensions 100 to 9999;
