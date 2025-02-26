@@ -690,10 +690,6 @@ message BidRequest {
       // Array of Banner objects (Section 3.2.3) if companion ads are available.
       repeated Banner companionad = 18;
 
-      // Companion ads in OpenRTB 2.1 format. (Or to be precise, interpretations
-      // based on the buggy sample message in 5.1.4, fixed later in 2.2.)
-      optional CompanionAd companionad_21 = 22 [deprecated = true];
-
       // List of supported API frameworks for this impression.
       // If an API is not explicitly listed, it is assumed not to be supported.
       // Refer to enum com.iabtechlab.adcom.v1.enums.APIFramework for generic values.
@@ -717,11 +713,8 @@ message BidRequest {
       // Extensions.
       extensions 100 to 9999;
 
-      // OpenRTB 2.1 compatibility.
-      message CompanionAd {
-        repeated Banner banner = 1;
-        extensions 100 to 9999;
-      }
+      // Retired fields.
+      reserved 22;
     }
 
     // This object represents an audio type impression. Many of the fields
@@ -1319,9 +1312,6 @@ message BidRequest {
     // Type of content (game, video, text, etc.).
     optional int32 context = 20;
 
-    // OpenRTB <= 2.2 compatibility; use context for 2.3+.
-    optional string context_22 = 12;
-
     // Content rating (e.g., MPAA).
     optional string contentrating = 10;
 
@@ -1382,7 +1372,7 @@ message BidRequest {
     extensions 100 to 9999;
 
     // Retired fields.
-    reserved 26;
+    reserved 12, 26;
   }
 
   // OpenRTB 2.0: This object defines the producer of the content in which
