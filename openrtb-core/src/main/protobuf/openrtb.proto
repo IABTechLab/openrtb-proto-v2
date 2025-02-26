@@ -1103,6 +1103,9 @@ message BidRequest {
     // ads.txt 1.1 spec for more details.
     optional string inventorypartnerdomain = 17;
 
+    // Retired fields.
+    reserved 14;
+
     // Extensions.
     extensions 100 to 9999;
   }
@@ -1185,6 +1188,9 @@ message BidRequest {
     // published in the ads.txt file on the root of that domain. Refer to the
     // ads.txt 1.1 spec for more details.
     optional string inventorypartnerdomain = 18;
+
+    // Retired fields.
+    reserved 14;
 
     // Extensions.
     extensions 100 to 9999;
