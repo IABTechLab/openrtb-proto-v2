@@ -495,7 +495,7 @@ message BidRequest {
       // Minimum video ad duration in seconds. This field is mutually exclusive with rqddurs; only
       // one of minduration and rqddurs may be in a bid request.
       // RECOMMENDED by the OpenRTB specification.
-      optional int32 minduration = 3 [default 0];
+      optional int32 minduration = 3 [default = 0];
 
       // Maximum video ad duration in seconds. This field is mutually exclusive with rqddurs; only
       // one of maxduration and rqddurs may be in a bid request.
