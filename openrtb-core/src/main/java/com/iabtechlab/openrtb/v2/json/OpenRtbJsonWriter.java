@@ -44,7 +44,6 @@ import com.iabtechlab.openrtb.v2.OpenRtb.BidRequest.Imp.Qty;
 import com.iabtechlab.openrtb.v2.OpenRtb.BidRequest.Imp.Refresh;
 import com.iabtechlab.openrtb.v2.OpenRtb.BidRequest.Imp.Refresh.RefSettings;
 import com.iabtechlab.openrtb.v2.OpenRtb.BidRequest.Imp.Video;
-import com.iabtechlab.openrtb.v2.OpenRtb.BidRequest.Imp.Video.CompanionAd;
 import com.iabtechlab.openrtb.v2.OpenRtb.BidRequest.Producer;
 import com.iabtechlab.openrtb.v2.OpenRtb.BidRequest.Publisher;
 import com.iabtechlab.openrtb.v2.OpenRtb.BidRequest.Regs;
@@ -480,17 +479,11 @@ public class OpenRtbJsonWriter extends AbstractOpenRtbJsonWriter {
       gen.writeNumberField("pos", video.getPos());
     }
     if (video.getCompanionadCount() != 0) {
-      // OpenRTB 2.2+
       gen.writeArrayFieldStart("companionad");
       for (Banner companionad : video.getCompanionadList()) {
         writeBanner(companionad, gen);
       }
       gen.writeEndArray();
-    }
-    if (video.hasCompanionad21()) {
-      // OpenRTB 2.1-
-      gen.writeFieldName("companionad");
-      writeCompanionAd21(video.getCompanionad21(), gen);
     }
     writeInts("api", video.getApiList(), gen);
     writeInts("companiontype", video.getCompaniontypeList(), gen);
@@ -530,25 +523,6 @@ public class OpenRtbJsonWriter extends AbstractOpenRtbJsonWriter {
     }
     if (video.hasPlcmt()) {
       gen.writeNumberField("plcmt", video.getPlcmt());
-    }
-  }
-
-  public final void writeCompanionAd21(CompanionAd companionad21, JsonGenerator gen)
-      throws IOException {
-    gen.writeStartObject();
-    writeCompanionAd21Fields(companionad21, gen);
-    writeExtensions(companionad21, gen);
-    gen.writeEndObject();
-  }
-
-  protected void writeCompanionAd21Fields(CompanionAd companionad21, JsonGenerator gen)
-      throws IOException {
-    if (companionad21.getBannerCount() != 0) {
-      gen.writeArrayFieldStart("banner");
-      for (Banner banner : companionad21.getBannerList()) {
-        writeBanner(banner, gen);
-      }
-      gen.writeEndArray();
     }
   }
 
@@ -592,7 +566,6 @@ public class OpenRtbJsonWriter extends AbstractOpenRtbJsonWriter {
     }
     writeInts("delivery", audio.getDeliveryList(), gen);
     if (audio.getCompanionadCount() != 0) {
-      // OpenRTB 2.2+
       gen.writeArrayFieldStart("companionad");
       for (Banner companionad : audio.getCompanionadList()) {
         writeBanner(companionad, gen);

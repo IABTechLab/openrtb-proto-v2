@@ -53,7 +53,6 @@ import com.iabtechlab.openrtb.v2.OpenRtb.BidRequest.Imp.Qty;
 import com.iabtechlab.openrtb.v2.OpenRtb.BidRequest.Imp.Refresh;
 import com.iabtechlab.openrtb.v2.OpenRtb.BidRequest.Imp.Refresh.RefSettings;
 import com.iabtechlab.openrtb.v2.OpenRtb.BidRequest.Imp.Video;
-import com.iabtechlab.openrtb.v2.OpenRtb.BidRequest.Imp.Video.CompanionAd;
 import com.iabtechlab.openrtb.v2.OpenRtb.BidRequest.Network;
 import com.iabtechlab.openrtb.v2.OpenRtb.BidRequest.Producer;
 import com.iabtechlab.openrtb.v2.OpenRtb.BidRequest.Publisher;
@@ -749,14 +748,8 @@ public class OpenRtbJsonReader extends AbstractOpenRtbJsonReader {
         video.setPos(par.getIntValue());
         break;
       case "companionad":
-        if (peekStructStart(par) == JsonToken.START_ARRAY) {
-          // OpenRTB 2.2+
-          for (startArray(par); endArray(par); par.nextToken()) {
-            video.addCompanionad(readBanner(par));
-          }
-        } else { // START_OBJECT
-          // OpenRTB 2.1-
-          video.setCompanionad21(readCompanionAd(par));
+        for (startArray(par); endArray(par); par.nextToken()) {
+          video.addCompanionad(readBanner(par));
         }
         break;
       case "api":
@@ -812,30 +805,6 @@ public class OpenRtbJsonReader extends AbstractOpenRtbJsonReader {
         break;
       default:
         readOther(video, par, fieldName);
-    }
-  }
-
-  public final CompanionAd.Builder readCompanionAd(JsonParser par) throws IOException {
-    CompanionAd.Builder companionad = CompanionAd.newBuilder();
-    for (startObject(par); endObject(par); par.nextToken()) {
-      String fieldName = getCurrentName(par);
-      if (par.nextToken() != JsonToken.VALUE_NULL) {
-        readCompanionAdField(par, companionad, fieldName);
-      }
-    }
-    return companionad;
-  }
-
-  protected void readCompanionAdField(
-      JsonParser par, CompanionAd.Builder companionad, String fieldName) throws IOException {
-    switch (fieldName) {
-      case "banner":
-        for (startArray(par); endArray(par); par.nextToken()) {
-          companionad.addBanner(readBanner(par));
-        }
-        break;
-      default:
-        readOther(companionad, par, fieldName);
     }
   }
 
@@ -897,11 +866,8 @@ public class OpenRtbJsonReader extends AbstractOpenRtbJsonReader {
         }
         break;
       case "companionad":
-        if (peekStructStart(par) == JsonToken.START_ARRAY) {
-          // OpenRTB 2.2+
-          for (startArray(par); endArray(par); par.nextToken()) {
-            audio.addCompanionad(readBanner(par));
-          }
+        for (startArray(par); endArray(par); par.nextToken()) {
+          audio.addCompanionad(readBanner(par));
         }
         break;
       case "api":
