@@ -25,6 +25,9 @@ line after checkout or after any mvn clean.
 
 ## Release notes
 
+### IAB-4.0.0
+- Update to make all fields 'optional'. Missing data is an error handled by business logic, not by the parser. Senders must make sure they populate the fields expected by receivers. Receivers must defend against OpenRTB 'required' fields being unset.
+
 ### IAB-3.0.0
 - Update to the proto-to-JSON conversion for a few fields that are integer in the OpenRTB spec that *were* being sent as booleans in JSON, and *now* are sent as integers.
 
