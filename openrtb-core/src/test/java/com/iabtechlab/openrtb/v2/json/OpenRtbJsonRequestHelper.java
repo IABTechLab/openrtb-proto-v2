@@ -279,11 +279,6 @@ class OpenRtbJsonRequestHelper {
             .setBoxingallowed(false)
             .addPlaybackmethod(PlaybackMethod.CLICK_SOUND_ON.getNumber())
             .setPos(PlacementPosition.ATF.getNumber())
-            .setCompanionad21(OpenRtb.BidRequest.Imp.Video.CompanionAd.newBuilder()
-                .addBanner(OpenRtb.BidRequest.Imp.Banner.newBuilder()
-                    .setId("compad2")
-                    .setW(110)
-                    .setH(60)))
             .setExtension(TestExt.testVideo, OpenRtbJsonFactoryHelper.test1));
 
     OpenRtb.BidRequest.Imp.Native.Builder nativ = OpenRtb.BidRequest.Imp.Native.newBuilder()

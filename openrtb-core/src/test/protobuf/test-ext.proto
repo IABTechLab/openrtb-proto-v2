@@ -74,9 +74,6 @@ extend com.iabtechlab.openrtb.v2.BidRequest.Imp.Refresh.RefSettings {
 extend com.iabtechlab.openrtb.v2.BidRequest.Imp.Video {
   optional Test1 testVideo = 110;
 }
-extend com.iabtechlab.openrtb.v2.BidRequest.Imp.Video.CompanionAd {
-  optional Test1 testCompanionAd = 110;
-}
 extend com.iabtechlab.openrtb.v2.BidRequest.Imp.Audio {
   optional Test1 testAudio = 110;
 }

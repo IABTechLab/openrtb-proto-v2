@@ -68,13 +68,11 @@
       "playbackmethod" : [ 3 ],
       "delivery" : [ 1 ],
       "pos" : 1,
-      "companionad" : {
-        "banner" : [ {
-          "w" : 110,
-          "h" : 60,
-          "id" : "compad2"
-        } ]
-      },
+      "companionad" : [ {
+        "w" : 100,
+        "h" : 50,
+        "id" : "compad1"
+      } ],
       "api" : [ 2 ],
       "companiontype" : [ 2 ],
       "ext" : {
