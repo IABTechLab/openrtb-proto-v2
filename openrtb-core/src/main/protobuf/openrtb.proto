@@ -34,7 +34,7 @@ message BidRequest {
   // ID of the bid request, assigned by the exchange, and unique for the exchange's subsequent
   // tracking of the responses. The exchange may use different values for different recipients.
   // REQUIRED by the OpenRTB specification.
-  required string id = 1;
+  optional string id = 1;
 
   // Array of Imp objects (Section 3.2.4) representing the impressions offered. At least 1 Imp
   // object is required.
@@ -254,7 +254,7 @@ message BidRequest {
   message Imp {
     // A unique identifier for this impression within the context of the bid request (typically,
     // value starts with 1 and increments).
-    required string id = 1;
+    optional string id = 1;
 
     // An array of Metric objects (Section 3.2.5).
     repeated Metric metric = 17;
@@ -909,7 +909,7 @@ message BidRequest {
       message Deal {
         // A unique identifier for the direct deal.
         // REQUIRED by the OpenRTB specification.
-        required string id = 1;
+        optional string id = 1;
 
         // Minimum bid for this impression expressed in CPM.
         optional double bidfloor = 2 [default = 0];
@@ -1850,7 +1850,7 @@ message BidRequest {
 message BidResponse {
   // ID of the bid request to which this is a response.
   // REQUIRED by the OpenRTB specification.
-  required string id = 1;
+  optional string id = 1;
 
   // Array of seatbid objects; 1+ required if a bid is to be made.
   repeated SeatBid seatbid = 2;
@@ -1898,17 +1898,17 @@ message BidResponse {
     message Bid {
       // Bidder generated bid ID to assist with logging/tracking.
       // REQUIRED by the OpenRTB specification.
-      required string id = 1;
+      optional string id = 1;
 
       // ID of the Imp object in the related bid request.
       // REQUIRED by the OpenRTB specification.
-      required string impid = 2;
+      optional string impid = 2;
 
       // Bid price expressed as CPM although the actual transaction is for a unit impression only.
       // Note that while the type indicates float, integer math is highly recommended when handling
       // currencies (e.g., BigDecimal in Java).
       // REQUIRED by the OpenRTB specification.
-      required double price = 3;
+      optional double price = 3;
 
       // Win notice URL called by the exchange if the bid wins (not necessarily indicative of a
       // delivered, viewed, or billable ad); optional means of serving ad markup. Substitution
@@ -2115,7 +2115,7 @@ message NativeRequest {
   message Asset {
     // Unique asset ID, assigned by exchange. Typically a counter for the array.
     // REQUIRED by the OpenRTB Native specification.
-    required int32 id = 1;
+    optional int32 id = 1;
 
     // Set to true if asset is required (exchange will not accept a bid without it).
     optional bool required = 2 [default = false];
@@ -2143,7 +2143,7 @@ message NativeRequest {
       // Maximum length of the text in the title element.
       // RECOMMENDED that the value be either of: 25, 90, 140.
       // REQUIRED by the OpenRTB Native specification.
-      required int32 len = 1;
+      optional int32 len = 1;
 
       // Extensions.
       extensions 100 to 9999;
@@ -2194,7 +2194,7 @@ message NativeRequest {
       // information in an appropriate format.
       // Refer to enum com.iabtechlab.adcom.v1.NativeDataAssetType for generic values.
       // REQUIRED by the OpenRTB Native specification.
-      required int32 type = 1;
+      optional int32 type = 1;
 
       // Maximum length of the text in the element's response. Longer strings may be truncated and
       // ellipsized by Ad Exchange or the publisher during rendering.
@@ -2212,7 +2212,7 @@ message NativeRequest {
     // Type of event available for tracking.
     // Refer to enum com.iabtechlab.adcom.v1.EventType for generic values.
     // REQUIRED by the OpenRTB Native specification.
-    required int32 event = 1;
+    optional int32 event = 1;
 
     // Array of types of tracking available for the given event.
     // Refer to enum com.iabtechlab.adcom.v1.enums.EventTrackingMethod for generic values.
@@ -2255,7 +2255,7 @@ message NativeResponse {
   // link object which applies if the asset is activated (clicked). If the asset doesn't have a link
   // object, the parent link object applies. See ResponseLink definition.
   // REQUIRED by the OpenRTB Native specification.
-  required Link link = 3;
+  optional Link link = 3;
 
   // Array of impression tracking URLs, expected to return a 1x1 image or 204 response - typically
   // only passed when using 3rd party trackers. To be deprecated in 1.2 - Replaced with
@@ -2284,7 +2284,7 @@ message NativeResponse {
   message Link {
     // Landing URL of the clickable link.
     // REQUIRED by the OpenRTB Native specification.
-    required string url = 1;
+    optional string url = 1;
 
     // List of third-party tracker URLs to be fired on click of the URL.
     repeated string clicktrackers = 2;
@@ -2305,7 +2305,7 @@ message NativeResponse {
   message Asset {
     // Unique asset ID, assigned by exchange, must match one of the asset IDs in request.
     // REQUIRED in 1.0, or in 1.2 if embedded asset is being used.
-    required int32 id = 1;
+    optional int32 id = 1;
 
     // Set to 1 if asset is required. (bidder requires it to be displayed).
     optional bool required = 2 [default = false];
@@ -2341,7 +2341,7 @@ message NativeResponse {
     message Title {
       // The text associated with the text element.
       // REQUIRED by the OpenRTB Native specification.
-      required string text = 1;
+      optional string text = 1;
 
       // The length of the title being provided.
       // REQUIRED if using assetsurl/dcourl representation.
@@ -2363,7 +2363,7 @@ message NativeResponse {
 
       // URL of the image asset.
       // REQUIRED by the OpenRTB Native specification.
-      required string url = 1;
+      optional string url = 1;
 
       // Width of the image in pixels.
       // RECOMMENDED in 1.0, 1.1, or in 1.2 for embedded asset responses.
@@ -2401,7 +2401,7 @@ message NativeResponse {
       // The formatted string of data to be displayed. Can contain a formatted value such as "5
       // stars" or "$10" or "3.4 stars out of 5".
       // REQUIRED by the OpenRTB Native specification.
-      required string value = 2;
+      optional string value = 2;
 
       // Extensions.
       extensions 100 to 9999;
@@ -2412,7 +2412,7 @@ message NativeResponse {
     message Video {
       // VAST xml.
       // REQUIRED by the OpenRTB Native specification.
-      required string vasttag = 1;
+      optional string vasttag = 1;
 
       // Extensions.
       extensions 100 to 9999;
@@ -2433,7 +2433,7 @@ message NativeResponse {
     // Type of tracking requested.
     // Refer to enum com.iabtechlab.adcom.v1.enums.EventTrackingMethod for generic values.
     // REQUIRED if embedded asset is being used.
-    required int32 method = 2;
+    optional int32 method = 2;
 
     // The URL of the image or js.
     // REQUIRED for image or js, optional for custom.
