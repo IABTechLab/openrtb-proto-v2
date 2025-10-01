@@ -1,4 +1,5 @@
-Please review the IAB Tech Lab Open Source Initiative Governance guidelines [here](http://iabtechlab.com/opensource) for contributing to this project.
+> [!CAUTION]
+> This project is **DEPRECATED**. It is being replaced by code that will reside in https://github.com/InteractiveAdvertisingBureau/openrtb2.x. As of 10/1/2025, it is in a [draft form](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/tree/proto-editions/src/main/com/iabtechlab/openrtb/v2), in public comment.
 
 # OpenRTB Libraries
 
